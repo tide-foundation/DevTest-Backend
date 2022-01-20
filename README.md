@@ -42,6 +42,29 @@ The endpoint will accept Json objects of the following form:
 | PUT `/key`/*{id}*    | Update an existing item | key item     | None |
 | DELETE `/key`/*{id}* | Delete an item          | None         | None |
 
+### Request example
+
+```http
+POST /key HTTP/1.1
+Content-Type: application/json
+
+{
+  "key":"MHcCAQEEINOO78gGFlUz8jt7UNUZNG+Fbq2XhuLl67Lktitx/sX1oAoGCCqGSM49AwEHoUQDQgAESTypEXFKHFjfLoyuJ+NEml+POYGKfBJJXQOEFTP9hRZfcR9TZP7yKHaBrnM2qc65F5JSLuWGAjhe6gAnLdcTZw=="
+}
+```
+
+### Response example
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id":1,
+  "key":"MHcCAQEEINOO78gGFlUz8jt7UNUZNG+Fbq2XhuLl67Lktitx/sX1oAoGCCqGSM49AwEHoUQDQgAESTypEXFKHFjfLoyuJ+NEml+POYGKfBJJXQOEFTP9hRZfcR9TZP7yKHaBrnM2qc65F5JSLuWGAjhe6gAnLdcTZw=="
+}
+```
+
 ---
 
 ## `/signature` endpoint
@@ -65,7 +88,7 @@ MEQCICnAqHQgNiEBEt58fewUVw1yzgT5yr86RCN1BD2siYaLAiB6Z0yQfZ9Hflk5G5WIcjBi8atO925h
 
 ### Request example
 
-```
+```http
 GET /signature?keyId=1&message=SGVsbG8gV29ybGQ HTTP/1.1
 ```
 
