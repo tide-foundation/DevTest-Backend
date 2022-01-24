@@ -39,7 +39,7 @@ The endpoint will accept Json objects of the following form:
 | GET `/key`           | Get all the key items   | None         | List of keys |
 | GET `/key`/*{id}*    | Get an item by id       | None         | key item |
 | POST `/key`          | Add a new item          | key item     | key item |
-| PUT `/key`/*{id}*    | Update an existing item | key item     | None |
+| PUT `/key`    | Update an existing item | key item     | None |
 | DELETE `/key`/*{id}* | Delete an item          | None         | None |
 
 ### Request example
