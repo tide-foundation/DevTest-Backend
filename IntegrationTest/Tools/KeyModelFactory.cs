@@ -10,7 +10,7 @@ namespace IntegrationTest.Tools
             _openssl = new Openssl();
         }
 
-        public KeyModel Random(string user) {
+        public KeyModel Random() {
             var keyPair = _openssl.GenKey();
             return new KeyModel {
                 Key = keyPair.PubKey

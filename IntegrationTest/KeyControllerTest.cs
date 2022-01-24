@@ -9,13 +9,11 @@ namespace IntegrationTest
     public class KeyControllerTest
     {
         private readonly string _url;
-        private readonly string _user;
         private readonly KeyClient _repo;
         private readonly KeyModelFactory _modelFact;
 
         public KeyControllerTest() {
-            _url = Environment.GetEnvironmentVariable("URL_BASE") ?? "http://localhost:8080";
-            _user = Environment.GetEnvironmentVariable("USER_BASE") ?? "tide";
+            _url = Environment.GetEnvironmentVariable("URL") ?? "http://localhost:8080";
             _repo = new KeyClient(_url);
             _modelFact = new KeyModelFactory();
         }
@@ -23,7 +21,7 @@ namespace IntegrationTest
         [Fact]
         public async Task TestInsert()
         {
-            var key = _modelFact.Random(_user);
+            var key = _modelFact.Random();
             
             var wasInserted = await _repo.Insert(key);
             Assert.True(wasInserted, "Key insertion was unsuccessful");
@@ -38,12 +36,12 @@ namespace IntegrationTest
         [Fact]
         public async Task TestUpdate()
         {
-            var key = _modelFact.Random(_user);
+            var key = _modelFact.Random();
             var wasInserted = await _repo.Insert(key);
 
             Assert.True(wasInserted, "Key insertion was unsuccessful");
 
-            var keyToUpdate = _modelFact.Random(_user);
+            var keyToUpdate = _modelFact.Random();
             key.Key = keyToUpdate.Key;
 
             var wasUpdated = await _repo.Update(key);
@@ -60,7 +58,7 @@ namespace IntegrationTest
         [Fact]
         public async Task TestDelete()
         {
-            var key = _modelFact.Random(_user);
+            var key = _modelFact.Random();
             var wasInserted = await _repo.Insert(key);
 
             Assert.True(wasInserted, "Key insertion was unsuccessful");
