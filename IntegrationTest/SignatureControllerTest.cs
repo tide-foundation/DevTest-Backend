@@ -15,7 +15,7 @@ namespace IntegrationTest
         private readonly Openssl _openssl;
 
         public SignatureControllerTest() {
-            _url = Environment.GetEnvironmentVariable("URL_BASE") ?? "http://localhost:8080";
+            _url = Environment.GetEnvironmentVariable("URL") ?? "http://localhost:8080";
             _keyRepo = new KeyClient(_url);
             _signRepo = new SignatureClient(_url);
             _openssl = new Openssl();

@@ -36,6 +36,8 @@ namespace IntegrationTest.Client
             if (!resp.IsSuccessStatusCode) return null;
 
             string result = resp.Content.ReadAsStringAsync().Result;
+            if (string.IsNullOrWhiteSpace(result)) return null;
+            
             return JsonSerializer.Deserialize<KeyModel>(result, 
                 new JsonSerializerOptions {
                     PropertyNameCaseInsensitive = true,
@@ -43,7 +45,9 @@ namespace IntegrationTest.Client
         }
 
         public async Task<bool> Insert(KeyModel model) {
-            var json = JsonSerializer.Serialize(model);
+            var json = JsonSerializer.Serialize(model, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             using var client = new HttpClient();
@@ -62,7 +66,9 @@ namespace IntegrationTest.Client
         }
 
         public async Task<bool> Update(KeyModel model) {
-            var json = JsonSerializer.Serialize(model);
+            var json = JsonSerializer.Serialize(model, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             using var client = new HttpClient();
